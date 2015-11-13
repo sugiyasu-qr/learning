@@ -69,7 +69,7 @@ Vagrant.configure(2) do |config|
     yum update -y
     yum install -y wget
     wget https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda3-2.4.0-Linux-x86_64.sh && bash Anaconda3-2.4.0-Linux-x86_64.sh -b
-    conda install scikit-learn
+    anaconda3/bin/conda install -y scikit-learn
   SHELL
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
