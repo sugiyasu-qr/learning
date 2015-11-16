@@ -12,8 +12,8 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "centos/7"
-  # config.vm.box = "centos"
+  #config.vm.box = "centos/7"
+  config.vm.box = "centos"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -69,7 +69,11 @@ Vagrant.configure(2) do |config|
     yum update -y
     yum install -y wget
     wget https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda3-2.4.0-Linux-x86_64.sh && bash Anaconda3-2.4.0-Linux-x86_64.sh -b
-    anaconda3/bin/conda install -y scikit-learn
+    . ~/.bashrc
+    echo "" >> ~/.bash_profile
+    echo "export PATH=$PATH:/root/anaconda3/bin" >> ~/.bash_profile
+    . ~/.bash_profile
+    conda create -y -n py35 python=3.5
   SHELL
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
