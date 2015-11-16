@@ -74,6 +74,7 @@ Vagrant.configure(2) do |config|
     echo "export PATH=$PATH:/root/anaconda3/bin" >> ~/.bash_profile
     . ~/.bash_profile
     conda create -y -n py35 python=3.5
+    conda install -y scikit-learn
   SHELL
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
