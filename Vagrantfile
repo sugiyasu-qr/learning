@@ -70,12 +70,13 @@ Vagrant.configure(2) do |config|
     yum install -y wget bzip2
     cd /tmp/
     wget https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda3-2.4.0-Linux-x86_64.sh && bash Anaconda3-2.4.0-Linux-x86_64.sh -b
-    echo "" >> /etc/anaconda_profile
-    echo "export PATH=$PATH:/root/anaconda3/bin" >> /etc/anaconda_profile
-    . /etc/anaconda_profile
+    anaconda_profile=/etc/profile.d/anaconda_profile.sh
+    echo "export PATH=$PATH:/root/anaconda3/bin" >> ${anaconda_profile}
+    echo "source activate py35" >> ${anaconda_profile}
+    chmod +x ${anaconda_profile}
+    . ${anaconda_profile}
     conda create -y -n py35 python=3.5
     conda install -y scikit-learn
-    echo "source activate py35" >> /etc/anaconda_profile
   SHELL
 
   if Vagrant.has_plugin?("vagrant-proxyconf")
